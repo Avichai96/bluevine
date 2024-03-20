@@ -8,13 +8,33 @@ Before running the script, make sure you have the following installed:
 Install the necessary packages using pip:
 
 ```bash
-pip install requests pandas python-dateutil rich
+pip install -r requirements.txt
 ```
 
 ## Required Files
 Ensure these files are present in your working directory:
 - `solution.py`: The Python script with your solution.
 - `books-isbns.txt`: A text file containing the ISBNs, one per line.
+- `answers.txt`: A log file for the results 
+
+
+## Preset Data
+### Generate ISBNs List (Optional):
+1. Uncomment and execute the following in solution.py to fetch ISBNs based on a query and save them to books-isbns.txt:
+```python 
+query = "action"  # or any other genre/keyword
+isbns = fetch_isbns(query)  
+```
+### Fetch and Save Book Data:
+2. After generating books-isbns.txt, uncomment and run the following to fetch detailed book data and save it for later use:
+```python
+    isbn_file = "books-isbns.txt"
+    books_data = get_books_info(isbn_file)
+
+    with open("books_data.json", "w") as outfile:
+        json.dump(books_data, outfile, indent=4)
+```
+    
 
 ## Running the Script
 To run the script, follow these steps:

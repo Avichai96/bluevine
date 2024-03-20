@@ -29,12 +29,6 @@ class CustomRichHandler(RichHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(console=Console(theme=custom_theme), rich_tracebacks=True)
 
-    # def emit(self, record):
-    #     log_context = get_logging_context()
-    #     for attr in EXTRA_ATTRIBUTES:
-    #         setattr(record, attr, log_context.get(attr, '...'))
-    #     super().emit(record)
-
 
 '''Console setting'''
 console_handler = CustomRichHandler()
@@ -537,14 +531,15 @@ def main():
 
 
 if __name__ == "__main__":
-    # use this to get list of ISBNs to work with
-    # query = "action"  # or any other genre/keyword
-    # isbns = fetch_isbns(query)  # Fetching ISBNs and writing them to 'books-isbns.txt'
-
-    # isbn_file = "books-isbns.txt"
-    # books_data = get_books_info(isbn_file)
-    # # Optionally, save this detailed data to a JSON file for later use
-    # with open("books_data.json", "w") as outfile:
-    #     json.dump(books_data, outfile, indent=4)
-
     main()
+
+# use this to get list of ISBNs to work with
+query = "action"  # or any other genre/keyword
+isbns = fetch_isbns(query)  # Fetching ISBNs and writing them to 'books-isbns.txt'
+
+# use this to fetch and save books data
+isbn_file = "books-isbns.txt"
+books_data = get_books_info(isbn_file)
+# Optionally, save this detailed data to a JSON file for later use
+with open("books_data.json", "w") as outfile:
+    json.dump(books_data, outfile, indent=4)
